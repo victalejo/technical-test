@@ -9,6 +9,7 @@ import { Row } from "@/layout/row.layout";
 import { Button } from "@/layout/button.layout";
 import { LoadingSpinner } from "@/layout/loading-spinner.layout";
 import { ErrorMessage } from "@/layout/error-message.layout";
+import { EmptyState } from "@/layout/empty-state.layout";
 import { ProductForm } from "./product-form.page";
 import { ProductItem } from "./product-item.page";
 import * as productsService from "@/service/products.service";
@@ -80,11 +81,10 @@ export function ProductListScreen() {
 
   return (
     <PageContainer>
-      <Row>
+      <Row justify="between">
         <Heading>My Products</Heading>
+        <ProductListHeader email={user?.email || ""} onLogout={handleLogout} />
       </Row>
-      <Spacer size="sm" />
-      <ProductListHeader email={user?.email || ""} onLogout={handleLogout} />
       <Spacer />
       <ProductForm onSubmit={handleAdd} error={formError} loading={formLoading} />
       <Spacer />
@@ -106,7 +106,7 @@ interface ProductListHeaderProps {
 
 function ProductListHeader({ email, onLogout }: ProductListHeaderProps) {
   return (
-    <Row>
+    <Row gap="sm">
       <span>{email}</span>
       <Button onClick={onLogout} variant="secondary">Logout</Button>
     </Row>
@@ -121,6 +121,10 @@ interface ProductListItemsProps {
 }
 
 function ProductListItems({ products, onUpdate, onDelete, onMove }: ProductListItemsProps) {
+  if (products.length === 0) {
+    return <EmptyState title="No products yet" subtitle="Add your first product above" />;
+  }
+
   return (
     <>
       {products.map((product, index) => (

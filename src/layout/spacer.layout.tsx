@@ -5,6 +5,6 @@ interface SpacerProps {
 }
 
 export function Spacer({ size = "md" }: SpacerProps) {
-  const sizes = { sm: "h-2", md: "h-4", lg: "h-6" };
+  const sizes = { sm: "h-3", md: "h-5", lg: "h-8" };
   return <div className={sizes[size]} />;
 }

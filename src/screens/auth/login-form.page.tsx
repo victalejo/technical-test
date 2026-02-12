@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input } from "@/layout/input.layout";
 import { Button } from "@/layout/button.layout";
 import { Label } from "@/layout/label.layout";
+import { Spacer } from "@/layout/spacer.layout";
 import { ErrorMessage } from "@/layout/error-message.layout";
 
 interface LoginFormProps {
@@ -28,8 +29,10 @@ export function LoginForm({ onSubmit, error, loading }: LoginFormProps) {
         type="email"
         name="email"
       />
+      <Spacer size="sm" />
       <ErrorMessage message={error} />
-      <Button type="submit" disabled={loading || !email.trim()}>
+      <Spacer size="sm" />
+      <Button type="submit" disabled={loading || !email.trim()} fullWidth>
         {loading ? "Entering..." : "Enter"}
       </Button>
     </form>

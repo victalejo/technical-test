@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Product } from "@/types/product.types";
 import { Input } from "@/layout/input.layout";
 import { Button } from "@/layout/button.layout";
+import { Label } from "@/layout/label.layout";
 import { IconButton } from "@/layout/icon-button.layout";
 import { Card } from "@/layout/card.layout";
 import { Row } from "@/layout/row.layout";
@@ -78,13 +79,16 @@ interface ProductItemEditProps {
 function ProductItemEdit({ name, amount, comment, onNameChange, onAmountChange, onCommentChange, onSave, onCancel }: ProductItemEditProps) {
   return (
     <Card>
+      <Label>Name</Label>
       <Input value={name} onChange={onNameChange} placeholder="Name" />
       <Spacer size="sm" />
+      <Label>Amount</Label>
       <Input value={amount} onChange={onAmountChange} placeholder="Amount" type="number" />
       <Spacer size="sm" />
+      <Label>Comment</Label>
       <Input value={comment} onChange={onCommentChange} placeholder="Comment" />
-      <Spacer size="sm" />
-      <Row>
+      <Spacer />
+      <Row gap="sm">
         <Button onClick={onSave}>Save</Button>
         <Button onClick={onCancel} variant="secondary">Cancel</Button>
       </Row>

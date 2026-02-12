@@ -7,7 +7,7 @@ interface LabelProps {
 
 export function Label({ children, htmlFor }: LabelProps) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1">
+    <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1.5">
       {children}
     </label>
   );

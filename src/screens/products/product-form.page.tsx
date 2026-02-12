@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Input } from "@/layout/input.layout";
 import { Button } from "@/layout/button.layout";
 import { Label } from "@/layout/label.layout";
+import { Spacer } from "@/layout/spacer.layout";
+import { Card } from "@/layout/card.layout";
+import { Heading } from "@/layout/heading.layout";
 import { ErrorMessage } from "@/layout/error-message.layout";
 
 interface ProductFormProps {
@@ -24,17 +27,25 @@ export function ProductForm({ onSubmit, error, loading }: ProductFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Label>Name</Label>
-      <Input value={name} onChange={setName} placeholder="Product name" />
-      <Label>Amount</Label>
-      <Input value={amount} onChange={setAmount} placeholder="0" type="number" />
-      <Label>Comment</Label>
-      <Input value={comment} onChange={setComment} placeholder="Optional comment" />
-      <ErrorMessage message={error} />
-      <Button type="submit" disabled={loading || !name.trim() || !amount}>
-        {loading ? "Adding..." : "Add Product"}
-      </Button>
-    </form>
+    <Card>
+      <Heading subtitle="Fill in the details below">Add Product</Heading>
+      <Spacer />
+      <form onSubmit={handleSubmit}>
+        <Label>Name</Label>
+        <Input value={name} onChange={setName} placeholder="Product name" />
+        <Spacer size="sm" />
+        <Label>Amount</Label>
+        <Input value={amount} onChange={setAmount} placeholder="0" type="number" />
+        <Spacer size="sm" />
+        <Label>Comment</Label>
+        <Input value={comment} onChange={setComment} placeholder="Optional comment" />
+        <Spacer size="sm" />
+        <ErrorMessage message={error} />
+        <Spacer size="sm" />
+        <Button type="submit" disabled={loading || !name.trim() || !amount} fullWidth>
+          {loading ? "Adding..." : "Add Product"}
+        </Button>
+      </form>
+    </Card>
   );
 }
